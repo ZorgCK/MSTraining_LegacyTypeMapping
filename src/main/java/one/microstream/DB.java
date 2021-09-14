@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import io.micronaut.core.io.ResourceResolver;
 import io.micronaut.core.io.scan.ClassPathResourceLoader;
+import one.microstream.persistence.types.Persistence;
 import one.microstream.storage.embedded.configuration.types.EmbeddedStorageConfiguration;
 import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 
@@ -19,7 +20,14 @@ public class DB
 		ClassPathResourceLoader loader = new ResourceResolver().getLoader(ClassPathResourceLoader.class).get();
 		Optional<URL> resource = loader.getResource("microstream.xml");
 		
+		ClassPathResourceLoader refactoringLoader =
+			new ResourceResolver().getLoader(ClassPathResourceLoader.class).get();
+		Optional<URL> refactoringResource = refactoringLoader.getResource("refactoring.csv");
+		
 		storageManager = EmbeddedStorageConfiguration.load(
-			resource.get().getPath()).createEmbeddedStorageFoundation().createEmbeddedStorageManager(root).start();
+			resource.get().getPath()).createEmbeddedStorageFoundation().setRefactoringMappingProvider(
+				Persistence.RefactoringMapping(refactoringResource.get().getPath())).createEmbeddedStorageManager(
+					root).start();
+		
 	}
 }
