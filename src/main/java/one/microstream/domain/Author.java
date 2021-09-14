@@ -1,31 +1,27 @@
 package one.microstream.domain;
 
-import one.microstream.reference.Lazy;
-
-
 public class Author
 {
-	private String			mail;
-	private String			firstname;
-	private String			lastname;
-	private Lazy<byte[]>	image;
+	private String	mailAuthor;
+	private String	firstname;
+	private String	name;
 	
-	public Author(String mail, String firstname, String lastname)
+	public Author(String mailAuthor, String firstname, String name)
 	{
 		super();
-		this.mail = mail;
+		this.mailAuthor = mailAuthor;
 		this.firstname = firstname;
-		this.lastname = lastname;
+		this.name = name;
 	}
 	
-	public String getMail()
+	public String getMailAuthor()
 	{
-		return mail;
+		return mailAuthor;
 	}
 	
-	public void setMail(String mail)
+	public void setMailAuthor(String mailAuthor)
 	{
-		this.mail = mail;
+		this.mailAuthor = mailAuthor;
 	}
 	
 	public String getFirstname()
@@ -38,24 +34,14 @@ public class Author
 		this.firstname = firstname;
 	}
 	
-	public String getLastname()
+	public String getName()
 	{
-		return lastname;
+		return name;
 	}
 	
-	public void setLastname(String lastname)
+	public void setName(String name)
 	{
-		this.lastname = lastname;
-	}
-	
-	public Lazy<byte[]> getImage()
-	{
-		return image;
-	}
-	
-	public void setImage(Lazy<byte[]> image)
-	{
-		this.image = image;
+		this.name = name;
 	}
 	
 }

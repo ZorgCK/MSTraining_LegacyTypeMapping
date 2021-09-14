@@ -17,7 +17,7 @@ public class AuthorController
 	@Get("/create")
 	public HttpResponse<String> createAuthors()
 	{
-		Author author = new Author("Charlotte", "Link", "c.link@example.com");
+		Author author = new Author("c.link@example.com", "Charlotte", "Link");
 		
 		DB.root.getAuthors().clear();
 		DB.root.getAuthors().add(author);
