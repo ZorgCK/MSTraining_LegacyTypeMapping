@@ -19,7 +19,7 @@ public class AuthorController
 	{
 		Author author = new Author("c.link@example.com", "Charlotte", "Link");
 		
-		DB.root.getAuthors().clear();
+		// DB.root.getAuthors().clear();
 		DB.root.getAuthors().add(author);
 		DB.storageManager.store(DB.root.getAuthors());
 		
