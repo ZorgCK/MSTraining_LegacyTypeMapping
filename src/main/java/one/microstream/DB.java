@@ -38,7 +38,8 @@ public class DB
 
 		try(InputStream in = refactoringLoader.getResourceAsStream("refactoring.csv").get())
 		{
-			return XChars.readStringFromInputStream(in, StandardCharsets.UTF_8);
+			String readStringFromInputStream = XChars.readStringFromInputStream(in, StandardCharsets.UTF_8);
+			return readStringFromInputStream;
 		}
 		catch(final IOException e)
 		{
