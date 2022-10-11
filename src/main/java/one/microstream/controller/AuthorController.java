@@ -1,8 +1,6 @@
 package one.microstream.controller;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.Controller;
@@ -25,23 +23,7 @@ public class AuthorController
 		
 		return HttpResponse.ok("Author successfully created!");
 	}
-	
-	@Get("/update")
-	public HttpResponse<String> updateAuthor()
-	{
-		Optional<Author> findFirst = DB.root.getAuthors().stream().findFirst();
 		
-		if(findFirst.isPresent())
-		{
-			Author author = findFirst.get();
-			
-			author.setFirstname(author.getFirstname() + LocalDateTime.now());
-			DB.storageManager.store(author);
-		}
-		
-		return HttpResponse.ok("Author successfully updated!");
-	}
-	
 	@Get
 	public List<Author> getAuthors()
 	{
