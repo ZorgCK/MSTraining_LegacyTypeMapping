@@ -1,14 +1,10 @@
 package one.microstream.domain;
 
-import one.microstream.reference.Lazy;
-
-
 public class Author
 {
 	private String			mail;
 	private String			firstname;
 	private String			lastname;
-	private Lazy<byte[]>	image;
 	
 	public Author(String mail, String firstname, String lastname)
 	{
@@ -46,16 +42,5 @@ public class Author
 	public void setLastname(String lastname)
 	{
 		this.lastname = lastname;
-	}
-	
-	public Lazy<byte[]> getImage()
-	{
-		return image;
-	}
-	
-	public void setImage(Lazy<byte[]> image)
-	{
-		this.image = image;
-	}
-	
+	}	
 }
