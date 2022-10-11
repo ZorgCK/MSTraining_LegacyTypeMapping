@@ -25,23 +25,24 @@ public class DB
 		final ClassPathResourceLoader loader = new ResourceResolver().getLoader(ClassPathResourceLoader.class).get();
 		final Optional<URL> resource = loader.getResource("microstream.xml");
 		
+		storageManager = EmbeddedStorageConfiguration.load(
+			resource.get().getPath()).createEmbeddedStorageFoundation().setRefactoringMappingProvider(
+				Persistence.RefactoringMapping(provideMapping())).createEmbeddedStorageManager(
+					root).start();
+	}
+	
+	private static String provideMapping()
+	{
 		final ClassPathResourceLoader refactoringLoader =
 			new ResourceResolver().getLoader(ClassPathResourceLoader.class).get();
-		
-		String mapping;
+
 		try(InputStream in = refactoringLoader.getResourceAsStream("refactoring.csv").get())
 		{
-			mapping = XChars.readStringFromInputStream(in, StandardCharsets.UTF_8);
+			return XChars.readStringFromInputStream(in, StandardCharsets.UTF_8);
 		}
 		catch(final IOException e)
 		{
 			throw new IORuntimeException(e);
 		}
-		
-		storageManager = EmbeddedStorageConfiguration.load(
-			resource.get().getPath()).createEmbeddedStorageFoundation().setRefactoringMappingProvider(
-				Persistence.RefactoringMapping(mapping)).createEmbeddedStorageManager(
-					root).start();
-		
 	}
 }
