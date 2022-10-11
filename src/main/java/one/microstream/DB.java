@@ -5,7 +5,10 @@ import java.util.Optional;
 
 import io.micronaut.core.io.ResourceResolver;
 import io.micronaut.core.io.scan.ClassPathResourceLoader;
+import one.microstream.persistence.internal.InquiringLegacyTypeMappingResultor;
+import one.microstream.persistence.types.PersistenceLegacyTypeMappingResultor;
 import one.microstream.storage.embedded.configuration.types.EmbeddedStorageConfiguration;
+import one.microstream.storage.embedded.types.EmbeddedStorageFoundation;
 import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 
 
@@ -19,7 +22,13 @@ public class DB
 		ClassPathResourceLoader loader = new ResourceResolver().getLoader(ClassPathResourceLoader.class).get();
 		Optional<URL> resource = loader.getResource("microstream.xml");
 		
-		storageManager = EmbeddedStorageConfiguration.load(
-			resource.get().getPath()).createEmbeddedStorageFoundation().createEmbeddedStorageManager(root).start();
+		EmbeddedStorageFoundation<?> foundation = EmbeddedStorageConfiguration.load(
+			resource.get().getPath()).createEmbeddedStorageFoundation();
+		
+		foundation.getConnectionFoundation().setLegacyTypeMappingResultor(
+			InquiringLegacyTypeMappingResultor.New(
+				PersistenceLegacyTypeMappingResultor.New()));
+		
+		storageManager = foundation.createEmbeddedStorageManager(root).start();
 	}
 }
