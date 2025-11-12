@@ -8,16 +8,16 @@ import java.util.Optional;
 
 import io.micronaut.core.io.ResourceResolver;
 import io.micronaut.core.io.scan.ClassPathResourceLoader;
-import one.microstream.chars.XChars;
-import one.microstream.exceptions.IORuntimeException;
-import one.microstream.persistence.types.Persistence;
-import one.microstream.storage.embedded.configuration.types.EmbeddedStorageConfiguration;
-import one.microstream.storage.embedded.types.EmbeddedStorageManager;
+import org.eclipse.serializer.chars.XChars;
+import org.eclipse.serializer.exceptions.IORuntimeException;
+import org.eclipse.serializer.persistence.types.Persistence;
+import org.eclipse.store.storage.embedded.configuration.types.EmbeddedStorageConfiguration;
+import org.eclipse.store.storage.embedded.types.EmbeddedStorageManager;
 
 
 public class DB
 {
-	public static EmbeddedStorageManager	storageManager;
+	public static EmbeddedStorageManager storageManager;
 	public final static DataRoot			root	= new DataRoot();
 	
 	static
