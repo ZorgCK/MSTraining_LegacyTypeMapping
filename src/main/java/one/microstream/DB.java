@@ -5,13 +5,12 @@ import java.util.Optional;
 
 import io.micronaut.core.io.ResourceResolver;
 import io.micronaut.core.io.scan.ClassPathResourceLoader;
-import one.microstream.storage.embedded.configuration.types.EmbeddedStorageConfiguration;
-import one.microstream.storage.embedded.types.EmbeddedStorageManager;
-
+import org.eclipse.store.storage.embedded.configuration.types.EmbeddedStorageConfiguration;
+import org.eclipse.store.storage.embedded.types.EmbeddedStorageManager;
 
 public class DB
 {
-	public static EmbeddedStorageManager	storageManager;
+	public static EmbeddedStorageManager storageManager;
 	public final static DataRoot			root	= new DataRoot();
 	
 	static
